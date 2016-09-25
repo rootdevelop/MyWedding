@@ -1,0 +1,63 @@
+@model List<Guest>
+
+
+<form class="ui form" asp-action="AddGuest">
+     <div class="field">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Name">
+  </div>
+  <div class="field">
+    <label>Code</label>
+    <input type="text" name="code" placeholder="Code">
+  </div>
+
+  <button class="ui button" type="submit">Save</button>
+</form>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Is attending</th>
+        <th>Meal prefference</th>
+        <th>Comments</th>
+     </tr>
+  </thead>
+  <tbody>
+      @foreach (var guest in Model)
+      {
+          <tr>
+              <td>@guest.Name</td>
+              <td>@guest.Code</td>
+              
+              @if (guest.HasResponded) 
+              {
+                   if (guest.IsAttending) 
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+              }
+              else 
+              {
+                    <td>No response yet</td>
+              }
+              
+              @if (guest.HasResponded && guest.IsAttending)
+              {
+                <td>@guest.MealType.ToString()</td>
+              }
+              else 
+              {
+                  <td></td>
+              }
+              <td>@guest.Comments</td>     
+          </tr>
+      }
+
+  </tbody>
+</table>
