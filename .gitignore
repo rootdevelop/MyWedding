@@ -81,11 +81,8 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
-<<<<<<< HEAD
-=======
 *.VC.db
 *.VC.VC.opendb
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
 
 # Visual Studio profiler
 *.psess
@@ -149,14 +146,11 @@ publish/
 *.pubxml
 *.publishproj
 
-<<<<<<< HEAD
-=======
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
 PublishScripts/
 
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
@@ -165,12 +159,10 @@ PublishScripts/
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
-<<<<<<< HEAD
-=======
+
 # NuGet v3's project.json files produces more ignoreable files
 *.nuget.props
 *.nuget.targets
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
 
 # Microsoft Azure Build Output
 csx/
@@ -180,20 +172,17 @@ csx/
 ecf/
 rcf/
 
-<<<<<<< HEAD
 # Microsoft Azure ApplicationInsights config file
 ApplicationInsights.config
 
 # Windows Store app package directory
 AppPackages/
 BundleArtifacts/
-=======
 # Windows Store app package directories and files
 AppPackages/
 BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -212,13 +201,10 @@ ClientBin/
 node_modules/
 orleans.codegen.cs
 
-<<<<<<< HEAD
-=======
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
 
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
 # RIA/Silverlight projects
 Generated_Code/
 
@@ -264,11 +250,10 @@ _Pvt_Extensions
 
 # Paket dependency manager
 .paket/paket.exe
-<<<<<<< HEAD
 
 # FAKE - F# Make
 .fake/
-=======
+
 paket-files/
 
 # FAKE - F# Make
@@ -277,4 +262,3 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
->>>>>>> fe4279b7f0c868395e24db5df5cfe347eddd0125
