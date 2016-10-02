@@ -1,36 +1,7 @@
-@model MyWedding.Models.Guest
-
 <div class="ui segment">
 
     <div class="ui text centered container">
-        <form class="ui form" asp-action="SaveResponse">
-            <input type="hidden" name="id" value="@Model.Id">
-            <div class="field">
-                <label>Welcome @Model.Name</label>
-            </div>
-            <div class="field">
-                <label>Will you be attending?</label>
-                <select name="isAttending" class="ui dropdown">
-                    <option value=true>Yes</option>
-                    <option value=false>No</option>
-                </select>
-            </div>
-
-             <div class="grouped fields">
-                 <label>Meal preference</label>
-                 <select name="mealType" class="ui dropdown">
-                     <option value=0>Fish</option>
-                     <option value=1>Meat</option>
-                     <option value=2>Vegetarian</option>
-                </select>
-               
-            </div>
-            <div class="field">
-                <label>Comments (food allergies, special arrangements, etc)</label>
-                <textarea name="comments" rows="3"></textarea>
-            </div>
-            <button class="ui button" type="submit">Submit</button>
-            </form>
+        <!-- response form -->
         
     </div>
 

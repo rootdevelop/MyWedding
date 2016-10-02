@@ -23,6 +23,6 @@ namespace MyWedding.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Guest> Guests {get;set;}
+        
     }
 }
