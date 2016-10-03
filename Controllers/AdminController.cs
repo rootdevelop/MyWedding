@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyWedding.Data;
 using MyWedding.Models;
+using MyWedding.Models.Enums;
 
 
 namespace MyWedding.Controllers
