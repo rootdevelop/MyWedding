@@ -6,9 +6,17 @@ You can participate in this workshop from any computer running Windows, Mac OS X
 During this workshop the following dependencies need to be installed:
 
 - Visual Studio Code (http://code.visualstudio.com/)
-- .NET Core 1.01 (http://dot.net)
+- .NET Core 1.0.1 (http://dot.net)
 
 During this workshop we'll be creating a RSVP application for an upcoming wedding.
+
+**0) Download & Restore**
+
+Download or clone this repository and make sure the directory is called "MyWedding". After this execute the following command within the MyWedding directory using the command-line or terminal:
+
+    dotnet restore
+
+After this all dependencies should restore and you're ready to do some programming.
 
 **1) Let's create a database**
 
@@ -42,7 +50,7 @@ To do this, go to ApplicationDbContext.cs within the Data directory and add the 
 
 Good, now Entity Framework is aware of our Guests table. Now let's execute some commands to generate this database.
 
-Within the command-line inside the project directory execute the following commands:
+Using the command-line inside inside the project directory execute the following commands:
 
     dotnet ef database migrations add GuestMigration
     dotnet ef database update
@@ -96,7 +104,7 @@ Great, let's see if all our hard work paid of.
 
 **3) Testing the admin area**
 
-Within the command-line inside the project directory execute the following command:
+Using the command-line inside the project directory execute the following command:
 
     dotnet run
 
@@ -170,7 +178,7 @@ Open the Index.cshtml within the Views/Guest directory and add the following cod
 
 **5) Lets test**
 
-Within the command-line inside the project directory execute the following command:
+Using the command-line inside the project directory execute the following command:
 
     dotnet run
 
