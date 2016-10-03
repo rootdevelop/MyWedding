@@ -109,7 +109,7 @@ Off course people need to be able to RSVP as well, so let's create our logic. Op
         [HttpPost]
         public IActionResult Index([FromForm] string code)
         {
-            var guest = _context.Guests.FirstOrDefault(x => x.Code == code);
+            var guest = _dbContext.Guests.FirstOrDefault(x => x.Code == code);
 
             if (guest == null)
             {
@@ -122,15 +122,15 @@ Off course people need to be able to RSVP as well, so let's create our logic. Op
         [HttpPost]
         public IActionResult SaveResponse([FromForm] int id, bool isAttending, EMealType mealType, string comments)
         {
-            var guest = _context.Guests.FirstOrDefault(x => x.Id == id);
+            var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
             
             guest.IsAttending = isAttending;
             guest.MealType = mealType;
             guest.Comments = comments;
             guest.HasResponded = true;
 
-             _context.Guests.Update(guest);
-            _context.SaveChanges();
+             _dbContext.Guests.Update(guest);
+            _dbContext.SaveChanges();
 
             return View();
         }
