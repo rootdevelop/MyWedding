@@ -6,17 +6,9 @@ You can participate in this workshop from any computer running Windows, Mac OS X
 During this workshop the following dependencies need to be installed:
 
 - Visual Studio Code (http://code.visualstudio.com/)
-- .NET Core 1.0.1 (http://dot.net)
+- .NET Core 1.01 (http://dot.net)
 
 During this workshop we'll be creating a RSVP application for an upcoming wedding.
-
-**0) Download & Restore**
-
-Download or clone this repository and make sure the directory is called "MyWedding". After this execute the following command within the MyWedding directory using the command-line or terminal:
-
-    dotnet restore
-
-After this all dependencies should restore and you're ready to do some programming.
 
 **1) Let's create a database**
 
@@ -50,9 +42,9 @@ To do this, go to ApplicationDbContext.cs within the Data directory and add the 
 
 Good, now Entity Framework is aware of our Guests table. Now let's execute some commands to generate this database.
 
-Using the command-line inside inside the project directory execute the following commands:
+Within the command-line inside the project directory execute the following commands:
 
-    dotnet ef migrations add GuestMigration
+    dotnet ef database migrations add GuestMigration
     dotnet ef database update
 
 The first command generates a migration script to create/update the database. The second command executes all pending migrations.
@@ -97,14 +89,14 @@ Open the following view "Index.cshtml" within the Views/Admin folder and add the
 	    <input type="text" name="code" placeholder="Code">
 	  </div>
 	
-	  <button class="ui button" type="submit">Save</button>
+	  <button class="ui primary button" type="submit">Save</button>
 	</form>
 
 Great, let's see if all our hard work paid of.
 
 **3) Testing the admin area**
 
-Using the command-line inside the project directory execute the following command:
+Within the command-line inside the project directory execute the following command:
 
     dotnet run
 
@@ -163,8 +155,8 @@ Open the Index.cshtml within the Views/Guest directory and add the following cod
              <div class="grouped fields">
                  <label>Meal preference</label>
                  <select name="mealType" class="ui dropdown">
-                     <option value=0>Fish</option>
-                     <option value=1>Meat</option>
+                     <option value=0>Meat</option>
+                     <option value=1>Fish</option>
                      <option value=2>Vegetarian</option>
                 </select>
                
@@ -173,15 +165,182 @@ Open the Index.cshtml within the Views/Guest directory and add the following cod
                 <label>Comments (food allergies, special arrangements, etc)</label>
                 <textarea name="comments" rows="3"></textarea>
             </div>
-            <button class="ui button" type="submit">Submit</button>
+            <button class="ui primary button" type="submit">Submit</button>
      </form>
 
 **5) Lets test**
 
-Using the command-line inside the project directory execute the following command:
+Within the command-line inside the project directory execute the following command:
 
     dotnet run
 
 After this, the application will start. If everything was successful go to http://localhost:5000/ to open the RSVP website. Try to enter a welcome code to see if you can enter your preferences.
 
-**Congratulations, you have a working ASP.NET core application.**
+**6) Let's delete some guests**
+
+Everyone makes mistakes deleting is off course essential within the admin view.
+
+Let's add the following logic to the AdminController.cs within the Controllers directory.
+
+	    [HttpPost]
+        public IActionResult DeleteGuest([FromForm] int id)
+        {
+            var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
+            _dbContext.Guests.Remove(guest);
+            _dbContext.SaveChanges();
+            return View("Index",_dbContext.Guests.ToList());
+        }
+
+And the following logic to the Index.cshtml in the Views/Admin directory within a new td tag.
+
+    <form class="ui form" asp-action="DeleteGuest">
+         <input type="hidden" value="@guest.Id" name="id" />
+         <button class="ui red button" type="submit">Delete</button>
+    </form>
+
+Now we have a delete button. Let's run the application and see if this works.
+
+**7) Let's change some values**
+
+But what if one of your guests calls you and he prefers Meat instead of Fish. Let's add some edit functionality.
+
+Go to the Index.cshtml in the Views/Admin directory and add the following line of code inside the delete form:
+
+      <a asp-action="edit" asp-route-id="@guest.Id" class="ui primary button">Edit</a>
+
+Ok now let's create the Edit view. Let's create a new file called Edit.cshtml within the Views/Admin directory.
+
+Within this file add the following code:
+
+    @using MyWedding.Models.Enums
+	@model Guest
+	
+	<div class="ui segment">
+	
+	    <div class="ui text centered container">
+	         <form class="ui form" asp-action="Edit">
+	        <input type="hidden" name="id" value="@Model.Id">
+	        <div class="field">
+	            <label>Name</label>
+	            <input class="ui input" name="name" type="text" value="@Model.Name" />
+	        </div>
+	        <div class="field">
+	            <label>Code</label>
+	            <input class="ui input" name="code" type="text" value="@Model.Code" />
+	        </div>
+	        <div class="field">
+	            <label>Will you be attending?</label>
+	            <select name="isAttending" class="ui dropdown">
+	                @if (Model.HasResponded)
+	                {
+	                    @if (Model.IsAttending)
+	                    {
+	                        <option value=true selected>Yes</option>
+	                        <option value=false>No</option>
+	                    } 
+	                    else 
+	                    {
+	                        <option value=true>Yes</option>
+	                        <option value=false selected>No</option>
+	                    }
+	                }
+	                else 
+	                {
+	                    <option value="null">Unknown</option>
+	                    <option value=true>Yes</option>
+	                    <option value=false>No</option>
+	                }
+	             
+	            </select>
+	        </div>
+	
+	         <div class="grouped fields">
+	             <label>Meal preference</label>
+	             <select name="mealType" class="ui dropdown">
+	                 @if (Model.MealType == EMealType.Meat)
+	                 {
+	                    <option value=0 selected>Meat</option>
+	                 }
+	                 else
+	                 {
+	                    <option value=0>Meat</option>
+	                 }
+	
+	                 @if (Model.MealType == EMealType.Fish)
+	                 {
+	                    <option value=1 selected>Fish</option>
+	                 }
+	                 else
+	                 {
+	                    <option value=1>Fish</option>
+	                 }
+	
+	                 @if (Model.MealType == EMealType.Vegetarian)
+	                 {
+	                    <option value=2 selected>Vegetarian</option>
+	                 }
+	                 else
+	                 {
+	                    <option value=2>Vegetarian</option>
+	                 }
+	                 
+	                </select>
+	
+	        </div>
+	        <div class="field">
+	            <label>Comments (food allergies, special arrangements, etc)</label>
+	            <textarea name="comments" rows="3" value="@Model.Comments"></textarea>
+	        </div>
+	        <button class="ui primary button" type="submit">Save</button>
+	    </form>
+	
+	        
+	    </div>
+	
+	</div>
+
+Great, the views are done. Now let's add some logic in our AdminController. Go ahead and open the AdminController.cs in the Controllers directory and add the following code.
+
+	    public IActionResult Edit(int id)
+        {
+            var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
+            return View(guest);
+        }
+
+        [HttpPost]
+        public IActionResult Edit([FromForm] int id, string name, string code, bool? isAttending, EMealType mealType, string comments)
+        {
+              var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
+              guest.Name = name;
+              guest.Code = code;
+              if (isAttending != null)
+              {
+                    guest.IsAttending = (bool)isAttending;
+              }
+              guest.MealType = mealType;
+              guest.Comments = comments;
+              guest.HasResponded = true;
+
+              _dbContext.Guests.Update(guest);
+              _dbContext.SaveChanges();
+
+             return View("Index",_dbContext.Guests.ToList());
+        }
+
+Great. Now let's test this the application by executing dotnet run and see if the edit functionality is working as intended.
+
+**8) Authentication**
+
+Now we have all this great functionality, but we're not there yet. Everyone can now navigate to the /admin and manage all your guests. This is off course not secure.
+
+Go ahead and add the following line of code on top of the AdminController class within the AdminController.cs file.
+
+    [Authorize]
+
+Now run the application and navigate to http://localhost:5000/Admin and you'll see you now require a username & password to login.
+
+Navigate to http://localhost:5000/Acccount/Register to create an account and see if you're able to login afterwards.
+
+To disable registration remove the relevant methods in the AccountController.cs file within the Controllers directory.
+
+**Congratulations, now you have a fully functional ASP.NET Core web application with a working database & working authentication**
