@@ -1,0 +1,51 @@
+ @model List<Guest>
+
+<!-- add new guest form -->
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Is attending</th>
+        <th>Meal preference</th>
+        <th>Comments</th>
+     </tr>
+  </thead>
+  <tbody>
+     @foreach (var guest in Model)
+    {
+        <tr>
+            <td>@guest.Name</td>
+            <td>@guest.Code</td>
+            
+            @if (guest.HasResponded) 
+            {
+                if (guest.IsAttending) 
+                {
+                    <td>Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            }
+            else 
+            {
+                <td>No response yet</td>
+            }
+            
+            @if (guest.HasResponded && guest.IsAttending)
+            {
+            <td>@guest.MealType.ToString()</td>
+            }
+            else 
+            {
+                <td></td>
+            }
+            <td>@guest.Comments</td>     
+        </tr>
+    }
+
+  </tbody>
+</table>
