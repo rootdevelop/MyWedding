@@ -190,7 +190,7 @@ Everyone makes mistakes deleting is off course essential within the admin view.
 
 Let's add the following logic to the AdminController.cs within the Controllers directory.
 
-	[HttpPost]
+		[HttpPost]
         public IActionResult DeleteGuest([FromForm] int id)
         {
             var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
@@ -220,7 +220,7 @@ Ok now let's create the Edit view. Let's create a new file called Edit.cshtml wi
 
 Within this file add the following code:
 
-    	@using MyWedding.Models.Enums
+    @using MyWedding.Models.Enums
 	@model Guest
 	
 	<div class="ui segment">
