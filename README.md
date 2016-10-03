@@ -6,9 +6,17 @@ You can participate in this workshop from any computer running Windows, Mac OS X
 During this workshop the following dependencies need to be installed:
 
 - Visual Studio Code (http://code.visualstudio.com/)
-- .NET Core 1.01 (http://dot.net)
+- .NET Core 1.0.1 (http://dot.net)
 
 During this workshop we'll be creating a RSVP application for an upcoming wedding.
+
+**0) Download & Restore**
+
+Download or clone this repository and make sure the directory is called "MyWedding". After this execute the following command within the MyWedding directory using the command-line or terminal:
+
+    dotnet restore
+
+After this all dependencies should restore and you're ready to do some programming.
 
 **1) Let's create a database**
 
@@ -44,7 +52,7 @@ Good, now Entity Framework is aware of our Guests table. Now let's execute some 
 
 Within the command-line inside the project directory execute the following commands:
 
-    dotnet ef database migrations add GuestMigration
+    dotnet ef migrations add GuestMigration
     dotnet ef database update
 
 The first command generates a migration script to create/update the database. The second command executes all pending migrations.
@@ -66,7 +74,7 @@ Let's start by creating the following 2 functions:
         [HttpPost]
         public IActionResult AddGuest([FromForm] string code, string name)
         {
-             var guest = new Guest();
+            var guest = new Guest();
             guest.Code = code;
             guest.Name = name;
             _dbContext.Guests.Add(guest);
@@ -129,7 +137,7 @@ Off course people need to be able to RSVP as well, so let's create our logic. Op
             guest.Comments = comments;
             guest.HasResponded = true;
 
-             _dbContext.Guests.Update(guest);
+            _dbContext.Guests.Update(guest);
             _dbContext.SaveChanges();
 
             return View();
@@ -182,7 +190,7 @@ Everyone makes mistakes deleting is off course essential within the admin view.
 
 Let's add the following logic to the AdminController.cs within the Controllers directory.
 
-	    [HttpPost]
+	[HttpPost]
         public IActionResult DeleteGuest([FromForm] int id)
         {
             var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
@@ -212,7 +220,7 @@ Ok now let's create the Edit view. Let's create a new file called Edit.cshtml wi
 
 Within this file add the following code:
 
-    @using MyWedding.Models.Enums
+    	@using MyWedding.Models.Enums
 	@model Guest
 	
 	<div class="ui segment">
