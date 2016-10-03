@@ -16,7 +16,8 @@ namespace MyWedding.Controllers
         public GuestController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-            
         }
+        
+        // Custom methods here
      }
 }
