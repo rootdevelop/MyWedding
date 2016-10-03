@@ -52,7 +52,7 @@ Good, now Entity Framework is aware of our Guests table. Now let's execute some 
 
 Using the command-line inside inside the project directory execute the following commands:
 
-    dotnet ef database migrations add GuestMigration
+    dotnet ef migrations add GuestMigration
     dotnet ef database update
 
 The first command generates a migration script to create/update the database. The second command executes all pending migrations.
