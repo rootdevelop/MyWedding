@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyWedding.Data;
@@ -20,6 +17,6 @@ namespace MyWedding.Controllers
            _dbContext = dbContext;
        }
 
-       // Custom methods here
+        // Custom methods here
     }
 }

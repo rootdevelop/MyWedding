@@ -12,7 +12,8 @@ During this workshop we'll be creating a RSVP application for an upcoming weddin
 
 **0) Download & Restore**
 
-Download or clone this repository and make sure the directory is called "MyWedding". After this execute the following command within the MyWedding directory using the command-line or terminal:
+Download or clone this repository and make sure the directory is called "MyWedding". Both Visual Studio Code and Visual Studio should automatically restore packages.
+If they don't, please execute the following command within the MyWedding directory using the command-line or terminal:
 
     dotnet restore
 
@@ -34,13 +35,13 @@ We'll start by creating our datamodel. Open the Guest.cs file in the Models dire
 
 Within this Model (table) we'll define our properties (columns)
 
-        public int Id {get;set;}
-        public string Code {get;set;}
-        public string Name {get;set;}
-        public bool IsAttending {get;set;}
-        public bool HasResponded {get;set;}
-        public EMealType MealType {get;set;}
-        public string Comments {get;set;}
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public bool IsAttending { get; set; }
+    public bool HasResponded { get; set; }
+    public EMealType MealType { get; set; }
+    public string Comments { get; set; }
       
 To make sure Entity Framework knows about our data model we'll need to define our Guest class within the ApplicationDatabase context.
 
@@ -104,7 +105,7 @@ Great, let's see if all our hard work paid of.
 
 **3) Testing the admin area**
 
-Within the command-line inside the project directory execute the following command:
+You can now run the application from Visual Studio Code or Visual Studio. If you want to run it from console, execute the following command inside the project directory:
 
     dotnet run
 
@@ -178,7 +179,7 @@ Open the Index.cshtml within the Views/Guest directory and add the following cod
 
 **5) Lets test**
 
-Within the command-line inside the project directory execute the following command:
+Run the project again from VS Code, VS or from the command-line inside the project directory with the following command:
 
     dotnet run
 
@@ -214,7 +215,7 @@ But what if one of your guests calls you and he prefers Meat instead of Fish. Le
 
 Go to the Index.cshtml in the Views/Admin directory and add the following line of code inside the delete form:
 
-      <a asp-action="edit" asp-route-id="@guest.Id" class="ui primary button">Edit</a>
+      <a asp-action="Edit" asp-route-id="@guest.Id" class="ui primary button">Edit</a>
 
 Ok now let's create the Edit view. Let's create a new file called Edit.cshtml within the Views/Admin directory.
 
@@ -297,7 +298,7 @@ Within this file add the following code:
 	        </div>
 	        <div class="field">
 	            <label>Comments (food allergies, special arrangements, etc)</label>
-	            <textarea name="comments" rows="3" value="@Model.Comments"></textarea>
+	            <textarea name="comments" rows="3">@Model.Comments</textarea>
 	        </div>
 	        <button class="ui primary button" type="submit">Save</button>
 	    </form>
