@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyWedding.Data;
+using System.Linq;
+using MyWedding.Models.Enums;
 
 namespace MyWedding.Controllers
 {
@@ -11,7 +13,7 @@ namespace MyWedding.Controllers
         {
             _dbContext = dbContext;
         }
-        
+
         // Custom methods here
-     }
+    }
 }

@@ -1,5 +1,9 @@
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyWedding.Data;
+using MyWedding.Models;
+using MyWedding.Models.Enums;
 
 
 namespace MyWedding.Controllers
@@ -13,6 +17,6 @@ namespace MyWedding.Controllers
            _dbContext = dbContext;
        }
 
-       // Custom methods here
+        // Custom methods here
     }
 }
