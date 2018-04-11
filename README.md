@@ -6,7 +6,8 @@ You can participate in this workshop from any computer running Windows, Mac OS X
 During this workshop the following dependencies need to be installed:
 
 - Visual Studio Code (http://code.visualstudio.com/)
-- .NET Core 1.0.1 (http://dot.net)
+- Or Visual Studio 2017 (https://www.visualstudio.com/)
+- .NET Core 2.X (http://dot.net)
 
 During this workshop we'll be creating a RSVP application for an upcoming wedding.
 
