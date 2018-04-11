@@ -35,13 +35,13 @@ We'll start by creating our datamodel. Open the Guest.cs file in the Models dire
 
 Within this Model (table) we'll define our properties (columns)
 
-        public int Id {get;set;}
-        public string Code {get;set;}
-        public string Name {get;set;}
-        public bool IsAttending {get;set;}
-        public bool HasResponded {get;set;}
-        public EMealType MealType {get;set;}
-        public string Comments {get;set;}
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public bool IsAttending { get; set; }
+    public bool HasResponded { get; set; }
+    public EMealType MealType { get; set; }
+    public string Comments { get; set; }
       
 To make sure Entity Framework knows about our data model we'll need to define our Guest class within the ApplicationDatabase context.
 
@@ -298,7 +298,7 @@ Within this file add the following code:
 	        </div>
 	        <div class="field">
 	            <label>Comments (food allergies, special arrangements, etc)</label>
-	            <textarea name="comments" rows="3" value="@Model.Comments"></textarea>
+	            <textarea name="comments" rows="3">@Model.Comments</textarea>
 	        </div>
 	        <button class="ui primary button" type="submit">Save</button>
 	    </form>
