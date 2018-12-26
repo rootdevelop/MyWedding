@@ -112,7 +112,7 @@ You can now run the application from Visual Studio Code or Visual Studio. If you
 
 After this, the application will start. If everything was successful go to http://localhost:5000/Admin/ to open the admin area. Try to add some guests.
 
-**4) Lets allow people RSVP**
+**4) Let's allow people RSVP**
 
 Of course people need to be able to RSVP as well, so let's create our logic. Open the GuestController.cs within the Controllers directory and add the following methods:
 
@@ -207,6 +207,10 @@ And the following logic to the Index.cshtml in the Views/Admin directory within 
          <input type="hidden" value="@guest.Id" name="id" />
          <button class="ui red button" type="submit">Delete</button>
     </form>
+
+Don't forget to add a corresponding column header in the correct place withing the table header
+
+    <th>Modify</th>
 
 Now we have a delete button. Let's run the application and see if this works.
 
