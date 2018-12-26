@@ -353,7 +353,7 @@ Go ahead and add the following line of code on top of the AdminController class 
 
 Now run the application and navigate to http://localhost:5000/Admin and you'll see you now require a username & password to login.
 
-Navigate to http://localhost:5000/Acccount/Register to create an account and see if you're able to login afterwards.
+Navigate to http://localhost:5000/Account/Register to create an account and see if you're able to login afterwards.
 
 To disable registration remove the relevant methods in the AccountController.cs file within the Controllers directory.
 
