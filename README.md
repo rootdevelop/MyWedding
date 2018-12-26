@@ -22,7 +22,7 @@ After this all dependencies should restore and you're ready to do some programmi
 
 **1) Let's create a database**
 
-To start of we'll have to create a database. Within ASP.Net core there is a library called Entity Framework. This allows us to generate the database tables & columns based on a POCO (Plain Old C# Object). Entify Framwork also allows us to query the database using Linq instead of SQL. 
+To start off we'll have to create a database. Within ASP.Net core there is a library called Entity Framework. This allows us to generate the database tables & columns based on a POCO (Plain Old C# Object). Entity Framework also allows us to query the database using Linq instead of SQL. 
 
 For example:
 
@@ -102,7 +102,7 @@ Open the following view "Index.cshtml" within the Views/Admin folder and add the
 	  <button class="ui primary button" type="submit">Save</button>
 	</form>
 
-Great, let's see if all our hard work paid of.
+Great, let's see if all our hard work has paid off.
 
 **3) Testing the admin area**
 
@@ -114,7 +114,7 @@ After this, the application will start. If everything was successful go to http:
 
 **4) Lets allow people RSVP**
 
-Off course people need to be able to RSVP as well, so let's create our logic. Open the GuestController.cs within the Controllers directory and add the following methods:
+Of course people need to be able to RSVP as well, so let's create our logic. Open the GuestController.cs within the Controllers directory and add the following methods:
 
         [HttpPost]
         public IActionResult Index([FromForm] string code)
@@ -145,7 +145,7 @@ Off course people need to be able to RSVP as well, so let's create our logic. Op
             return View();
         }
 
-This logic allows us to verify someone's welcome code and save their preferences. Now let's add the corrosponding view.
+This logic allows us to verify someone's welcome code and save their preferences. Now let's add the corresponding view.
 
 Open the Index.cshtml within the Views/Guest directory and add the following code:
 
@@ -178,7 +178,7 @@ Open the Index.cshtml within the Views/Guest directory and add the following cod
             <button class="ui primary button" type="submit">Submit</button>
      </form>
 
-**5) Lets test**
+**5) Let's test**
 
 Run the project again from VS Code, VS or from the command-line inside the project directory with the following command:
 
@@ -188,7 +188,7 @@ After this, the application will start. If everything was successful go to http:
 
 **6) Let's delete some guests**
 
-Everyone makes mistakes deleting is off course essential within the admin view.
+Everyone makes mistakes, deleting is of course essential within the admin view.
 
 Let's add the following logic to the AdminController.cs within the Controllers directory.
 
@@ -341,7 +341,7 @@ Great. Now let's test this the application by executing dotnet run and see if th
 
 **8) Authentication**
 
-Now we have all this great functionality, but we're not there yet. Everyone can now navigate to the /admin and manage all your guests. This is off course not secure.
+Now we have all this great functionality, but we're not there yet. Everyone can now navigate to the /admin page and manage all your guests. This is of course not secure.
 
 Go ahead and add the following line of code on top of the AdminController class within the AdminController.cs file.
 
@@ -353,4 +353,4 @@ Navigate to http://localhost:5000/Acccount/Register to create an account and see
 
 To disable registration remove the relevant methods in the AccountController.cs file within the Controllers directory.
 
-**Congratulations, now you have a fully functional ASP.NET Core web application with a working database & working authentication**
+**Congratulations, you now have a fully functional ASP.NET Core web application with a working database & working authentication**
