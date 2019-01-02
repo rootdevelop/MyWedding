@@ -90,17 +90,18 @@ The first method returns an Index View on the path "http://mywedding.com/Admin/"
 Open the following view "Index.cshtml" within the Views/Admin folder and add the following code:
 
     <form class="ui form" asp-action="AddGuest">
-	  <div class="field">
-	    <label>Name</label>
-	    <input type="text" name="name" placeholder="Name">
-	  </div>
-	  <div class="field">
-	    <label>Code</label>
-	    <input type="text" name="code" placeholder="Code">
-	  </div>
-	
-	  <button class="ui primary button" type="submit">Save</button>
-	</form>
+   <h1>Add a guest</h1>
+      <div class="field">
+     <label>Name</label>
+     <input type="text" name="name" placeholder="Name">
+   </div>
+   <div class="field">
+     <label>Welcome code</label>
+     <input type="text" name="code" placeholder="Welcome code">
+   </div>
+ 
+   <button class="ui primary button" type="submit">Add</button>
+ </form>
 
 Great, let's see if all our hard work has paid off.
 
@@ -192,7 +193,7 @@ Everyone makes mistakes, deleting is of course essential within the admin view.
 
 Let's add the following logic to the AdminController.cs within the Controllers directory.
 
-		[HttpPost]
+     [HttpPost]
         public IActionResult DeleteGuest([FromForm] int id)
         {
             var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
@@ -227,95 +228,95 @@ Ok now let's create the Edit view. Let's create a new file called Edit.cshtml wi
 Within this file add the following code:
 
     @using MyWedding.Models.Enums
-	@model Guest
-	
-	<div class="ui segment">
-	
-	    <div class="ui text centered container">
-	         <form class="ui form" asp-action="Edit">
-	        <input type="hidden" name="id" value="@Model.Id">
-	        <div class="field">
-	            <label>Name</label>
-	            <input class="ui input" name="name" type="text" value="@Model.Name" />
-	        </div>
-	        <div class="field">
-	            <label>Code</label>
-	            <input class="ui input" name="code" type="text" value="@Model.Code" />
-	        </div>
-	        <div class="field">
-	            <label>Will you be attending?</label>
-	            <select name="isAttending" class="ui dropdown">
-	                @if (Model.HasResponded)
-	                {
-	                    @if (Model.IsAttending)
-	                    {
-	                        <option value=true selected>Yes</option>
-	                        <option value=false>No</option>
-	                    } 
-	                    else 
-	                    {
-	                        <option value=true>Yes</option>
-	                        <option value=false selected>No</option>
-	                    }
-	                }
-	                else 
-	                {
-	                    <option value="null">Unknown</option>
-	                    <option value=true>Yes</option>
-	                    <option value=false>No</option>
-	                }
-	             
-	            </select>
-	        </div>
-	
-	         <div class="grouped fields">
-	             <label>Meal preference</label>
-	             <select name="mealType" class="ui dropdown">
-	                 @if (Model.MealType == EMealType.Meat)
-	                 {
-	                    <option value=0 selected>Meat</option>
-	                 }
-	                 else
-	                 {
-	                    <option value=0>Meat</option>
-	                 }
-	
-	                 @if (Model.MealType == EMealType.Fish)
-	                 {
-	                    <option value=1 selected>Fish</option>
-	                 }
-	                 else
-	                 {
-	                    <option value=1>Fish</option>
-	                 }
-	
-	                 @if (Model.MealType == EMealType.Vegetarian)
-	                 {
-	                    <option value=2 selected>Vegetarian</option>
-	                 }
-	                 else
-	                 {
-	                    <option value=2>Vegetarian</option>
-	                 }
-	                 
-	                </select>
-	
-	        </div>
-	        <div class="field">
-	            <label>Comments (food allergies, special arrangements, etc)</label>
-	            <textarea name="comments" rows="3">@Model.Comments</textarea>
-	        </div>
-	        <button class="ui primary button" type="submit">Save</button>
-	    </form>
-	
-	        
-	    </div>
-	
-	</div>
+ @model Guest
+ 
+ <div class="ui segment">
+ 
+     <div class="ui text centered container">
+          <form class="ui form" asp-action="Edit">
+         <input type="hidden" name="id" value="@Model.Id">
+         <div class="field">
+             <label>Name</label>
+             <input class="ui input" name="name" type="text" value="@Model.Name" />
+         </div>
+         <div class="field">
+             <label>Welcome code</label>
+             <input class="ui input" name="code" type="text" value="@Model.Code" />
+         </div>
+         <div class="field">
+             <label>Will you be attending?</label>
+             <select name="isAttending" class="ui dropdown">
+                 @if (Model.HasResponded)
+                 {
+                     @if (Model.IsAttending)
+                     {
+                         <option value=true selected>Yes</option>
+                         <option value=false>No</option>
+                     } 
+                     else 
+                     {
+                         <option value=true>Yes</option>
+                         <option value=false selected>No</option>
+                     }
+                 }
+                 else 
+                 {
+                     <option value="null">Unknown</option>
+                     <option value=true>Yes</option>
+                     <option value=false>No</option>
+                 }
+              
+             </select>
+         </div>
+ 
+          <div class="grouped fields">
+              <label>Meal preference</label>
+              <select name="mealType" class="ui dropdown">
+                  @if (Model.MealType == EMealType.Meat)
+                  {
+                     <option value=0 selected>Meat</option>
+                  }
+                  else
+                  {
+                     <option value=0>Meat</option>
+                  }
+ 
+                  @if (Model.MealType == EMealType.Fish)
+                  {
+                     <option value=1 selected>Fish</option>
+                  }
+                  else
+                  {
+                     <option value=1>Fish</option>
+                  }
+ 
+                  @if (Model.MealType == EMealType.Vegetarian)
+                  {
+                     <option value=2 selected>Vegetarian</option>
+                  }
+                  else
+                  {
+                     <option value=2>Vegetarian</option>
+                  }
+                  
+                 </select>
+ 
+         </div>
+         <div class="field">
+             <label>Comments (food allergies, special arrangements, etc)</label>
+             <textarea name="comments" rows="3">@Model.Comments</textarea>
+         </div>
+         <button class="ui primary button" type="submit">Save</button>
+     </form>
+ 
+         
+     </div>
+ 
+ </div>
 
 Great, the views are done. Now let's add some logic in our AdminController. Go ahead and open the AdminController.cs in the Controllers directory and add the following code.
 
-	    public IActionResult Edit(int id)
+     public IActionResult Edit(int id)
         {
             var guest = _dbContext.Guests.FirstOrDefault(x => x.Id == id);
             return View(guest);
