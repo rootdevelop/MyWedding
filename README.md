@@ -90,18 +90,17 @@ The first method returns an Index View on the path "http://mywedding.com/Admin/"
 Open the following view "Index.cshtml" within the Views/Admin folder and add the following code:
 
     <form class="ui form" asp-action="AddGuest">
-   <h1>Add a guest</h1>
-      <div class="field">
-     <label>Name</label>
-     <input type="text" name="name" placeholder="Name">
-   </div>
-   <div class="field">
-     <label>Welcome code</label>
-     <input type="text" name="code" placeholder="Welcome code">
-   </div>
- 
-   <button class="ui primary button" type="submit">Add</button>
- </form>
+        <h1>Add a guest</h1>
+        <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Name">
+        </div>
+        <div class="field">
+        <label>Welcome code</label>
+        <input type="text" name="code" placeholder="Welcome code">
+        </div>
+        <button class="ui primary button" type="submit">Add</button>
+    </form>
 
 Great, let's see if all our hard work has paid off.
 
